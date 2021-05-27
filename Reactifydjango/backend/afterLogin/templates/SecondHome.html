@@ -1,0 +1,10 @@
+<h2>Under construction</h2>
+
+<h1>{{info.student}}</h1>
+
+{% for infos in info  %}
+
+    <h1>{{infos.Department}} ---> {{infos.Clear}}-->{{infos.DateCleared}}</h1> 
+{% endfor %}
+<span>Hello , {{request.user}}</span>
+<a href = "{% url 'Logout' %}">Logout</a>
