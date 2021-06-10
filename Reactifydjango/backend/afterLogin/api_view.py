@@ -39,7 +39,7 @@ class ClearanceModelDestroyApiView(DestroyAPIView):
     queryset = Clearance.objects.all()
 
 
-class ClearanceModelUpdateAPIView(UpdateAPIView):
+class ClearanceModelUpdateAPIView(UpdateAPIView, RetrieveAPIView):
     queryset = Clearance.objects.all()
     serializer_class = InfoModelSerializer
 

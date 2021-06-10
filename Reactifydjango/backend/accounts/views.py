@@ -32,7 +32,7 @@ def registerPage(request):
             print(student.id)
             group = Group.objects.get(name='Student')
             user.groups.add(group)
-            createTable(student.id, username)
+            createTable(student.id, username, email)
 
             messages.success(request, 'Account was created for ' + username)
             return redirect('Login')
@@ -52,7 +52,7 @@ def loginPage(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('UserPage')
+            return redirect('Staffside')
 
         else:
             messages.info(request, 'Username or Password is incorrect')

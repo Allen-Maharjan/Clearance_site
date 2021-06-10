@@ -1,10 +1,105 @@
-<h2>Under construction</h2>
 
-<h1>{{info.student}}</h1>
+<head>
+    <link rel="stylesheet" href='https://unpkg.com/@webpixels/css@1.0/dist/index.css'>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-{% for infos in info  %}
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
-    <h1>{{infos.Department}} ---> {{infos.Clear}}-->{{infos.DateCleared}}</h1> 
-{% endfor %}
-<span>Hello , {{request.user}}</span>
-<a href = "{% url 'Logout' %}">Logout</a>
+    <title>KU Online Clearance</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">KU Clearance</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{url 'contact'}">Contact US</a>
+                    </li>
+                </ul>
+                <div class="mx-2">
+                    <span style = "color :white">Hello, {{request.user}}</span>
+                    <a class="btn btn-danger" href="{% url 'Logout' %}">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</body>
+
+<div class="p-10 bg-surface-secondary">
+    <div class="container">
+
+        <div class="card">
+            <div class="card-header">
+                <h6>{{info.name}} Clearance table</h6>
+
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover table-nowrap">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Department</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Amount Left</th>
+                            <th scope="col">Clear</th>
+                            <th scope="col">DateCleared</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for infos in info %}
+                            <tr>
+                                <td data-label="Student Name">
+                                    <img alt="..."
+                                        src="https://linustechtips.com/uploads/monthly_2019_05/imported-photo-640689.thumb.jpeg.2bcdd3641b0bce31ac1412ae89174518.jpeg"
+                                        class="avatar avatar-sm rounded-circle me-2">
+                                        <span style ="font-weight: bold">{{infos.name}}</span>
+                                    </a>
+                                </td>
+                                <td data-label="Department">
+                                    <span>{{infos.Department}}</span>
+                                </td>
+                                <td data-label="Email">
+                                    {{infos.Email}}
+                                </td>
+                                <td data-label="Amount Left">
+                                   <p>Null</p>
+                                </td>
+                                {% if infos.Clear == None %}
+                                    <td data-label="Clear Status">
+                                        <span class="badge bg-soft-danger text-danger">{{infos.Clear}}</span>
+                                    </td>
+                                {% else %}
+                                    <td data-label="DateCleared">
+                                        <span class="badge bg-soft-success text-success">{{infos.Clear}}</span>
+                                    </td>
+                                {% endif %}
+                                <td data-label="">
+                                    <a class="text-current" href="#">{{infos.DateCleared}}</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

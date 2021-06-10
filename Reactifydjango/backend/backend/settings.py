@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     'accounts',
     'afterLogin',
     'corsheaders',
-    'frontend_react'
+    'frontend_react',
+    'home',
+    'update',
 ]
 
 MIDDLEWARE = [

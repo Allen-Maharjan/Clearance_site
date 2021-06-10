@@ -6,7 +6,7 @@
         {% load static %}
         <link rel="stylesheet" type = "text/css" href = "{% static './styles/register.css' %}" >
         <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/cb/Kathmandu_University_Logo.svg/800px-Kathmandu_University_Logo.svg.png" alt="" width="100" height='100' />
-        <h1 class="user__title">KU Clearance Registration</h1>
+        <h1 class="user__title">KU Clearance Registration(For Students)</h1>
     </header>
 
     <center>
@@ -46,7 +46,7 @@
             <p>{{message}}</p>
         {% endfor %}
         <div class='Links'>
-            <p>Already have an account?<a href="{% url 'Login' %}">Sign up </a></p>
+            <p>Already have an account?<a href="{% url 'Login' %}">Sign in </a></p>
         </div>
     
         <button class="btn" type="submit">Register</button>

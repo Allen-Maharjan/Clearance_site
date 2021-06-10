@@ -8,4 +8,4 @@ class InfoModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Clearance
         fields = ['student', 'Department', 'Clear',
-                  'DateCleared', 'name']
+                  'DateCleared', 'name', 'Email', 'ClearedBy']

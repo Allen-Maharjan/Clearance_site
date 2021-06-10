@@ -34,8 +34,10 @@ class Clearance(models.Model):
     Department = models.CharField(
         max_length=200, null=True, choices=Department_choices)
     Clear = models.CharField(max_length=200, null=True, choices=Status)
-    DateCleared = models.DateTimeField(auto_now_add=True, null=True)
+    DateCleared = models.DateTimeField(null=True)
     name = models.CharField(max_length=200, null=True)
+    ClearedBy = models.CharField(max_length=200, null=True)
+    Email = models.EmailField(null=True)
 
     class Meta:
         unique_together = (("student", "Department", "name"),)
