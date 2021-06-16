@@ -1,0 +1,88 @@
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <title>Update info</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">KU Clearance</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'Staffside' %}">Home</a>
+                    </li>
+                </ul>
+                <div class="mx-2">
+                    <span style="color :white">Hello, {{request.user}}</span>
+                    <a class="btn btn-danger" href="{% url 'Logout' %}">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <h1 class ="display-4">Update Info</h1>
+    <div>
+        <form method = "POST">
+
+             <div class="input-group mb-3" >
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Student ID</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name ='std_id'>
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Student Name</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name = "name">
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Department</span>
+                </div>
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Department">
+                
+                    <option value="Computer Lab">Computer Lab</option>
+                    <option value="Physics Lab">Physics Lab</option>
+                    <option value="Account">Account</option>
+                    <option value="Bus">Bus</option>
+                    <option value="Library">Library</option>
+                    <option value="School/Dept Administration">School/Dept Administration</option>
+                    <option value="Student Welfare">Student Welfare</option>
+                </select>
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Clear Status</span>
+                </div>
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="clear">
+                    <option selected>None</option>
+                    <option value="All Clear">All Clear</option>
+                    <option value="Semi Clear">Semi Clear</option>
+                    <option value="Not cleared">Not Clear</option>
+                </select>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Amount Left</span>
+                </div>
+                <input type="number" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                    name='amount'>
+            </div>
+          
+           <center>
+                <button type='submit' class = 'btn btn-primary'>Update</button>
+            </center>
+            
+
+        </form>
+    </div>
+</body>

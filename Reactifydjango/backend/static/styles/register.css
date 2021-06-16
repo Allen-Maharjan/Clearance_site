@@ -10,13 +10,13 @@ body {
   background-size: 200% 100% !important;
   animation: move 10s ease infinite;
   transform: translate3d(0, 0, 0);
-  background: linear-gradient(45deg, #49d49d 10%, #a2c7e5 90%);
+  background: linear-gradient(45deg, #00b1d2ff 20%, #fddb27ff 80%);
   height: 100vh;
 }
 
 .user {
   width: 90%;
-  max-width: 340px;
+  max-width: 250px;
   margin: 10vh auto;
 }
 
@@ -50,9 +50,9 @@ body {
 }
 
 .form__input {
-  display: block;
+  display: inline-block;
   width: 100%;
-  padding: 20px;
+  padding: 15px 0;
   font-family: "Roboto";
   -webkit-appearance: none;
   border: 0;
@@ -72,11 +72,11 @@ body {
   outline: 0;
   border: 0;
   color: white;
-  background: #aba194;
+  background: #7072ce;
   transition: 0.3s;
 }
 .btn:hover {
-  background: #a09486;
+  background: #2124da;
 }
 
 @keyframes NO {
@@ -122,5 +122,3 @@ body {
     background-position: 0 0;
   }
 }
-
-/*# sourceMappingURL=register.css.map */

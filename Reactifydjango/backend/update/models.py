@@ -1,11 +1,15 @@
 from django.db import models
+from django.db.models.deletion import CASCADE
+
+from django.contrib.auth.models import User
 
 
-class updateInfo(models.Model):
+class Updateinfo(models.Model):
 
     Status = (
         ('All Clear', 'All Clear'),
-        ('Semi Clear', 'Semi Clear')
+        ('Semi Clear', 'Semi Clear'),
+        ('Not cleared', 'Not Cleared')
     )
 
     Department_choices = (
@@ -23,8 +27,8 @@ class updateInfo(models.Model):
     Clear = models.CharField(max_length=200, null=True, choices=Status)
     DateCleared = models.DateTimeField(null=True)
     name = models.CharField(max_length=200, null=True)
-    ClearedBy = models.CharField(max_length=200, null=True)
-    Email = models.EmailField(null=True)
+    ClearedBy = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    AmountLeft = models.IntegerField(null=True)
 
     class Meta:
-        unique_together = (("student", "Department", "name"),)
+        unique_together = (("student", "Department", "name", "Clear"),)

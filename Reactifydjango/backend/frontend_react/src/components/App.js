@@ -4,45 +4,40 @@ import axios from 'axios'
 
 const App = () => {
 
-    const [toggle, setToggle] = useState(true)
+    // const [toggle, setToggle] = useState(true)
 
-    const handleClick = () => {
-        setToggle(!toggle)
-    }
+    // const handleClick = () => {
+    //     setToggle(!toggle)
+    // }
 
-    const UpdateForm = () => {
-        console.log('HEllo')
-        const [student, setStudent] = useState([])
+    //     const hook = () => {
+    //         axios
+    //         .get('http://127.0.0.1:8000/verified/generic/list/')
+    //         .then(response => {
+    //         setStudent(response.data)
+    //         })
+    //     }
 
-
-        const hook = () => {
-            axios
-            .get('http://127.0.0.1:8000/verified/generic/list/')
-            .then(response => {
-            setStudent(response.data)
-            })
-        }
-
-        useEffect(hook, [])
-        return (
-            <div>
-                <p>Hello</p>
-                {student.map(students =>    
-                 <p>Name : {students.name}</p>
-                  )}
+    //     useEffect(hook, [])
+    //     return (
+    //         <div>
+    //             <p>Hello</p>
+    //             {student.map(students =>    
+    //              <p>Name : {students.name}</p>
+    //               )}
             
-            </div>
-        )
-    }
+    //         </div>
+    //     )
+    // }
 
-    const ToShow = () => {
-        if (toggle){
-            return <Home />
-        }
-        else{
-            return <UpdateForm />
-        }
-    }
+    // const ToShow = () => {
+    //     if (toggle){
+    //         return <Home />
+    //     }
+    //     else{
+    //         return (<Redirect to = 'http://127.0.0.1:8000/superuser/update/' />)
+    //     }
+    // }
 
     const Home = () => {
         const [student, setStudent] = useState([])
@@ -84,19 +79,25 @@ const App = () => {
                         <table class="table table-hover table-nowrap">
                             <thead class="thead-light">
                                 <tr>
+                                    <th scope='col'>Student ID</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Department</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Amount Left</th>
                                     <th scope="col">Clear</th>
                                     <th scope="col">DateCleared</th>
-                                    <th scope='update'> update</th>
+                                     <th data-label='update'>
+                                                            <a class="btn btn-primary text-light" href='http://127.0.0.1:8000/superuser/update/'>Update</a>
+                                                        </th>
                                     <th></th>
                                 </tr>
                             </thead>  
                             {studentToShow.map((students,i) => 
                                             <tbody>
                                                     <tr>
+                                                        <td data-label="id">
+                                                            <span>{students.student}</span>
+                                                        </td>
                                                         <td data-label="Department">
                                                             <span key = {i}>{students.name}</span>
                                                         </td>
@@ -115,9 +116,7 @@ const App = () => {
                                                         <td data-label="">
                                                             <a class="text-current" href="#">{students.DateCleared}</a>
                                                         </td>
-                                                        <td data-label='update'>
-                                                            <a class="btn btn-primary text-light" href="#" onClick = {handleClick}>Update</a>
-                                                        </td>
+                                                       
                                                     </tr>
 
                                             </tbody>)}
@@ -131,7 +130,7 @@ const App = () => {
     }
 
   return( 
-    <ToShow />
+    <Home />
     )
 }
 

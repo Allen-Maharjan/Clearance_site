@@ -4,7 +4,6 @@ from django.views.decorators.csrf import csrf_exempt
 
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 
 
@@ -32,8 +31,7 @@ def registerPage(request):
             print(student.id)
             group = Group.objects.get(name='Student')
             user.groups.add(group)
-            createTable(student.id, username, email)
-
+            createTable(student.id, username, email, user)
             messages.success(request, 'Account was created for ' + username)
             return redirect('Login')
 

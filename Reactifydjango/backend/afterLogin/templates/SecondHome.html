@@ -31,7 +31,7 @@
                         <a class="nav-link" href="{% url 'about' %}">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{url 'contact'}">Contact US</a>
+                        <a class="nav-link" href="{% url 'contact' %}">Contact US</a>
                     </li>
                 </ul>
                 <div class="mx-2">
@@ -56,11 +56,13 @@
                     <thead class="thead-light">
                         <tr>
                             <th scope="col">Name</th>
+                            <th scope="col">Student ID</th>
                             <th scope="col">Department</th>
                             <th scope="col">Email</th>
                             <th scope="col">Amount Left</th>
                             <th scope="col">Clear</th>
                             <th scope="col">DateCleared</th>
+                            <th scope="col">Cleared By</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -74,6 +76,9 @@
                                         <span style ="font-weight: bold">{{infos.name}}</span>
                                     </a>
                                 </td>
+                                <td data-label="Student ID">
+                                    <span>{{infos.student}}</span>
+                                </td>
                                 <td data-label="Department">
                                     <span>{{infos.Department}}</span>
                                 </td>
@@ -81,19 +86,22 @@
                                     {{infos.Email}}
                                 </td>
                                 <td data-label="Amount Left">
-                                   <p>Null</p>
+                                   {{infos.AmountLeft}}
                                 </td>
                                 {% if infos.Clear == None %}
                                     <td data-label="Clear Status">
                                         <span class="badge bg-soft-danger text-danger">{{infos.Clear}}</span>
                                     </td>
                                 {% else %}
-                                    <td data-label="DateCleared">
+                                    <td data-label="Clear Status">
                                         <span class="badge bg-soft-success text-success">{{infos.Clear}}</span>
                                     </td>
                                 {% endif %}
                                 <td data-label="">
                                     <a class="text-current" href="#">{{infos.DateCleared}}</a>
+                                </td>
+                                <td data-label="Clearedby">
+                                    {{infos.ClearedBy}}
                                 </td>
                             </tr>
                             {% endfor %}

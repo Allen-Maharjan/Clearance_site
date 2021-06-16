@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import underConstruction, userPage
+from .views import underConstruction
 from .api_view import (
     ClearanceModelCreateApiView,
     ClearanceModelDestroyApiView,
@@ -10,7 +10,6 @@ from .api_view import (
 
 urlpatterns = [
     path('UnderConstruction/', underConstruction, name='underconstruction'),
-    path('user/', userPage, name='UserPage'),
     path('generic/create', ClearanceModelCreateApiView.as_view()),
     path('generic/list/', ClearanceModelListApiView.as_view()),
     path('generic/delete/<int:pk>', ClearanceModelDestroyApiView.as_view()),
