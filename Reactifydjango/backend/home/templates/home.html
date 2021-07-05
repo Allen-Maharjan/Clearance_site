@@ -1,141 +1,232 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clerance Website</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static './styles/styles.css' %}">
+    <script>
+        const menu = document.querySelector('#mobile-menu');
+            const menuLinks = document.querySelector('.navbar__menu');
+            const navLogo = document.querySelector('#navbar__logo');
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+            // display mobile menu
+            const mobileMenu = () => {
+                menu.classList.toggle('is-active');
+                menuLinks.classList.toggle('active');
 
-    <title>KU Online Clearance</title>
+            }
+
+            menu.addEventListener('click', mobileMenu)
+
+            // show active menu when scrolling
+
+            const highlightMenu = () => {
+                const elem = document.querySelector('.highlight');
+                const homeMenu = document.querySelector('.#home-page');
+                const aboutMenu = document.querySelector('#about-page');
+                const servicesMenu = document.querySelector('#Service.page');
+                let scrollPos = window.scrollY;
+
+                // adds 'highlight ' class to my menu items 
+
+                if (window.innerWidth > 960 && scrollPos < 600) {
+                    homeMenu.classList.add('highlight');
+                    aboutMenu.classList.remove('highlight');
+                    return;
+                } else if (window.innerWidth > 960 && scrollPos < 1400) {
+                    aboutMenu.classList.add('highlight');
+                    homeMenu.classList.remove('highlight');
+                    servicesMenu.classList.remove('highlight');
+                    return;
+                } else if (window.innerWidth > 960 && scrollPos < 2345) {
+                    aboutMenu.classList.remove('highlight');
+                    servicesMenu.classList.add('highlight')
+                    return;
+                }
+                if ((elem && window.innerWIdth < 960 && scrollPos < 600) || elem) {
+                    elem.classList.remove('highlight');
+                }
+            };
+            window.addEventListener('scroll', highlightMenu);
+            window.addEventListener('click', highlightMenu);
+
+            //  Close mobile Menu when clicking on a menu item
+            const hideMobileMenu = () => {
+                const menuBars = document.querySelector('.is-active');
+                if (window.innerWidth <= 768 && menuBars) {
+                    menu.classList.toggle('is-active');
+                    menuLinks.classList.remove('active');
+                }
+            };
+
+            menuLinks.addEventListener('click', hideMobileMenu);
+            navLogo.addEventListener('click', hideMobileMenu);
+        
+
+    </script>
 </head>
-
 <body>
-   
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">KU Clearance</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'Staffside' %}">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'about' %}">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'contact' %}">Contact US</a>
-                        </li>
-                        
-                    {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'about' %}">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'contact' %}">Contact US</a>
-                        </li>
-                    {% endif %}
-                   
-                    
+    <!-- Creating a navbar -->
+    
+    <nav class="navbar">
+         <div class="navbar__container">
+         <a href="#home" id="navbar__logo">CLEARANCE PORTAL </a>
+         <div class="navbar__toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+         </div>
+         <ul class="navbar__menu">
+             <li class="navbar__item">
+                 <a href="#home" class="navbar__links" id="home-page">Home</a>
+             </li>
+             <li class="navbar__item">
+                <a href="#about" class="navbar__links" id="about-page">About</a>
+            </li>
+            <li class="navbar__item">
+                <a href="#Services" class="navbar__links" id="Services-page">Services</a>
+            </li>
 
-                </ul>
-               
-                <div class="mx-2">
-                    {% if user.is_authenticated %}
-                        <span style="color :white">Hello, {{request.user}}</span>
-                        <a class="btn btn-primary" href="{% url 'Logout' %}">Logout</a>
-                    {% else %}
-                        <a class="btn btn-primary" href="{% url 'Login' %}">Login</a>
-                        <a class="btn btn-danger" href="{% url 'Register' %}">Signup</a>
-                    {% endif %}
-                    
-                </div>
-            </div>
+            {% if user.is_authenticated %}
+
+                <li class="navbar__item">
+                    <a href="{% url 'Logout' %}" class="button" id="signup">Logout</a>
+                </li>
+            {% else %}
+                <li class="navbar__item">
+                    <a href="{% url 'Register' %}" class="button" id="signup">Sign Up</a>
+                </li>
+            {% endif %}
+         </ul>
         </div>
     </nav>
-   
-    <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="/images/111.jpeg" class="d-block w-100" alt="error">
-                <div class="carousel-caption d-none d-md-block">
-                    <h2>Welcome to ku clearance website</h2>
-                    <p>you can apply for the clearance once you login.</p>
-                    <button class="btn btn-danger">Engineering</button>
-                    <button class="btn btn-success">Science</button>
-                    <button class="btn btn-primary">Medical</button>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="https://source.unsplash.com/1400x400/?nature,water" class="d-block w-100" alt="error">
-                <div class="carousel-caption d-none d-md-block">
-                   <h2>Welcome to ku clearance website</h2>
-                    <p>you can apply for the clearance once you login.</p>
-                    <button class="btn btn-danger">Engineering</button>
-                    <button class="btn btn-success">Science</button>
-                    <button class="btn btn-primary">Medical</button>
 
-                </div>
+    <!--Hero Section-->
+
+    <div class="hero" id="home">
+        <div class="hero__container">
+            <h1 class="hero__heading">Get your <span>certificate</span></h1>
+            <p class="hero__description">   <u>Kathmandu University</u></p>
+           
+            {% if user.is_authenticated %}
+
+                <h1 class="hero__heading">{{request.user}}</h1>
+            {% else %}
+                <button class="main__btn"> <a href="{% url 'Login' %}">Log In </a></button>
+            {% endif %}
+        </div>
+    </div>
+
+    <!--About Section-->
+    <div class="main" id="about">
+        <div class="main__container">
+            <div class="main__img--container">
+                <div class="main__img--card"></div>
             </div>
-            <div class="carousel-item">
-                <img src="https://source.unsplash.com/1400x400/?coding" class="d-block w-100" alt400r300">
-                <div class="carousel-caption d-none d-md-block">
-                    <h2>Welcome to ku clearance website</h2>
-                    <p>you can apply for the clearance once you login.</p>
-                    <button class="btn btn-danger">Engineering</button>
-                    <button class="btn btn-success">Science</button>
-                    <button class="btn btn-primary">Medical</button>
-                </div>
+            <div class="main__content">
+                <h1>What do we do?</h1>
+                <h2>We aid at KU Clearance</h2>
+                <p>Schedule a call if you got any problem. </p>
+                <button class="main__btn"> <a href="#">Call Admin </a></button>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+    </div>
 
+    <!--Services Section-->
+    <div class="services" id="Services">
+        <h1>Our Schools</h1>
+        <div class="services__wrapper">
+            <div class="services__card">
+                <h2>School of science and Engineering</h2>
+                <p>KUSOS/E</p>
+                <div class="services__btn"><button>Get Started</button></div>
+            </div>
+            <div class="services__card">
+                <h2>School of Management</h2>
+                <p>KUSOM</p>
+                <div class="services__btn"><button>Under Construction</button></div>
+            </div>
+            <div class="services__card">
+                <h2>School of medical science</h2>
+                <p>KUSOMS</p>
+                <div class="services__btn"><button>Under Construction</button></div>
+            </div>
+            <div class="services__card">
+                <h2>School of law</h2>
+                <p>KUSOL</p>
+                <div class="services__btn"><button>Under Construction</button></div>
+            </div>
+        </div>
+    </div>
+
+    <!--Features Section-->
+    <div class="main" id="sign-up">
+        <div class="main__container">
+            <div class="main__content">
+                <h1>Thank you for being part of us</h1>
+                <h2>Get back to KU website</h2>
+                <p>Contact us for more information </p>
+
+                {% if user.is_authenticated %}
+                    <button class="main__btn"> <a href="{% url 'Logout' %}">Logout </a></button>
+                
+                {% else %}
+                    <button class="main__btn"> <a href="{% url 'Register' %}">Sign Up </a></button>
+                {% endif %}
+            </div>
+            <div class="main__img--container">
+                <div class="main__img--card"></div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!--Footer Section-->
+    <div class="footer__container">
+        <div class="footer__links">
+            <div class="footer__link--wrapper">
+                <div class="footer__link--items">
+                    <h2>About us</h2>
+                    <a href="/sign-up">How it works?</a>
+                    <a href="/sign-up">Testimonials</a>
+                    <a href="/sign-up">Developer Details</a>
+                    <a href="/sign-up">Terms and Conditions</a>
+                </div>
+                
+            </div>
+            <div class="footer__link--wrapper">
+                <div class="footer__link--items">
+                    <h2>Any Comments?</h2>
+                    <a href="/sign-up">Submit your comments/Recommendations.</a>
+                    
+                </div>
+               
+            </div>
+            
+        </div>
+        <section class="social__media">
+            <div class="social__media--wrap">
+                <div class="footer__logo"><a href="/" id="__logo">CLEARANCE PORTAL</a>
+                </div>
+                <p class="website__rights">© CLERANCE PORTAL 2021.All Rights Reserved</p>
+                <div class="social__icons">
+                    <a href="/" class="social__icon--link" target="blank"
+                    ><i class="fab fa-facebook"></i></a>
+                    <a href="/" class="social__icon--link"
+                    ><i class="fab fa-instagram"></i></a>
+                    <a href="/" class="social__icon--link"
+                    ><i class="fab fa-youtube"></i></a>
+                    <a href="/" class="social__icon--link"
+                    ><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </section>
+    </div>
     
-    <footer class="container">
-    <p class="float-end"><a href="#">Back to top</a></p>
-    <p>©
-			Kathmandu University,
-			Dhulikhel, Nepal,
-			 Tel.
-			<a style="color:#212529" href="tel:977-11-415100, 977-11-415200, 977-9801210035, 977-11-415005" target="_blank">977-11-415100, 977-11-415200, 977-9801210035, 977-11-415005</a>, Email:
-			info@ku.edu.np, Fax:
-			977-11-415011 P.O Box: 6250	<a href="#">Privacy · <a href="#">Terms</a></p>
-  </footer>
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
-        integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
-        crossorigin="anonymous"></script>
-    -->
 </body>
-
-</html
+</html>
