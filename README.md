@@ -8,4 +8,7 @@ Required packages:
   <li>Django rest framework </li>
   <li>babel </li>
   <li> webapck </li>
+  <li>bootstrap v5 </li>
+  <li> sass </li>
+  <li>html</li>
 </ul>
