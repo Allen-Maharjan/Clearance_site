@@ -36,5 +36,5 @@ Database: Django default sqlite3
 
 <h3> update-page preview </h3>
 
-![](Reactifydjango/backend/images/screencapture-127-0-0-1-8000-user-UpdatePage-2021-07-05-18_54_19.png)
+![](Reactifydjango/backend/images/screencapture-127-0-0-1-8000-superuser-update-2021-07-05-18_54_39.png)
 
