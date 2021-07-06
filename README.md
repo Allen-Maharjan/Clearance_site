@@ -13,6 +13,8 @@ Required packages:
   <li>html</li>
 </ul>
 
+Database: Django default sqlite3
+
 <h3> Home-page preview </h3> 
 
 ![](Reactifydjango/backend/images/screencapture-127-0-0-1-8000-2021-07-05-19_02_34.png)
