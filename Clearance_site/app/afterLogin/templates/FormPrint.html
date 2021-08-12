@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form List</title>
+    <style>
+        table.table1 {
+        font-family: "EB Garamond", serif;
+        border-collapse: collapse;
+        width: 100%;
+        }
+
+        td,
+        th {
+        border: 1px solid #000000;
+        text-align: left;
+        padding: 8px;
+        }
+
+        p {
+        font-family: "EB Garamond", serif;
+        padding: 0px;
+        }
+        table.table2 {
+        font-family: "EB Garamond", serif;
+        border-collapse: collapse;
+        width: 100%;
+        }
+        .container {
+        border: 1px solid #000000;
+        }
+        .row {
+        margin-top: 5px;
+        }
+        h6 {
+        padding-top: 5px;
+        text-align: center;
+        font-family: "EB Garamond", serif;
+        }
+        h3 {
+        text-align: center;
+        font-family: "EB Garamond", serif;
+        }
+        h5 {
+        font-family: "EB Garamond", serif;
+        }
+        .btn {
+        margin-top: 15px;
+        }
+        img {
+        height: auto;
+        width: 100%;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class='container'>
+        <h3>CLEARANCE FORM</h3>
+        <p>
+            The Dean &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+            &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+            &emsp;&emsp; &emsp; &emsp; &emsp; &emsp; Date:<br>
+            School of............<br>
+            Kathmandu University<br>
+            Dhulikhel, Kavre
+        </p>
+        <p>
+            Subject: Refund of the caution money,<br>
+            I have completed the .................. course and therefore request to refund my money deposited as per the
+            attached. I have obtained the clearance from the concerned department as stated below:
+        </p>
+        <table class='table1'>
+            <tr>
+                <tr>
+                    <th scope="col">Department</th>
+                    <th scope="col">Amount Left</th>
+                    <th scope="col">Clear</th>
+                    <th scope="col">Date Cleared</th>
+                    <th scope="col">Cleared By</th>
+                    <th></th>
+                </tr>
+            </tr>
+            {% for infos in info %}
+            <tr>
+                <td>{{infos.Department}}</td>
+                {% if infos.AmountLeft == None %}
+                    <td > - </td>
+                {% else %}
+                    <td> {{infos.AmountLeft}} </td>
+                {% endif %}
+                {% if infos.Clear == None %}
+                    <td> Not Cleared </td>
+                {% else %}
+                    <td> {{infos.Clear}} </td>
+                {% endif %}
+                {% if infos.DateCleared == None %}
+                    <td> Not Cleared </td>
+                {% else %}
+                    <td> {{infos.DateCleared}} </td>
+                {% endif %}
+                {% ifequal infos.ClearedBy request.user %}
+                    <td> - </td>
+                {% else %}
+                    <td> {{infos.ClearedBy}} </td>
+                {% endifequal %}
+
+            </tr>
+            {% endfor %}
+        </table><br>
+        <table class='table2'>
+            <tr>
+                <td>
+                    Exam Roll No.:<br>
+                    Registration No.:<br>
+                    Batch/Group:
+                </td>
+                <td>
+                    Student's Name: <br>
+                    Student's Signature:<br>
+                    &emsp;
+
+                </td>
+            </tr>
+        </table>
+        <br>
+        <div class='container'>
+            <h6>(For Official Use Only)</h6>
+            <p>
+                The Finance &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+                &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+                &emsp; &emsp; &emsp; Date:<br>
+                KU, Dhulikhel<br>
+                Please refund an amount of Rs. .................. of the caution money to the applicant.<br>
+            </p>
+            <p>
+                Dean/HOD .......................................... &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+                &emsp; &emsp; Signature ...................................... &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+                &emsp; &emsp; &emsp; School of ..............................
+            </p>
+        </div>
+
+    </div>
+</body>
+
+</html>
