@@ -43,5 +43,5 @@ Database: Django default sqlite3
 ![](Clearance_site/app/images/register_page.png)
 
 
-<h3> Print Form Preview </h3>
+<h3> Print-Form Preview </h3>
 ![](Clearance_site/app/images/form_print.png)
