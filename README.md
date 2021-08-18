@@ -38,5 +38,10 @@ Database: Django default sqlite3
 
 ![](Clearance_site/app/images/screencapture-127-0-0-1-8000-superuser-update-2021-07-05-18_54_39.png)
 
-<h3> Print Form Preview </h3>
 
+<h3> Registration-page preview </h3>
+![](Clearance_site/app/images/register_page.png)
+
+
+<h3> Print Form Preview </h3>
+![](Clearance_site/app/images/form_print.png)
