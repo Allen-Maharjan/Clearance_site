@@ -24,6 +24,11 @@ Database: Django default sqlite3
 ![](Clearance_site/app/images/screencapture-127-0-0-1-8000-acc-Login-2021-07-05-18_52_52.png)
 
 
+<h3> Registration-page preview </h3>
+
+![form_page_preview](https://github.com/Allen-Maharjan/Clearance_site/blob/master/Clearance_site/app/images/register_page.png?raw=true)
+
+
 <h3> Student-view preview </h3>
 
 ![](Clearance_site/app/images/screencapture-127-0-0-1-8000-verified-UnderConstruction-2021-07-05-18_53_41.png)
@@ -39,9 +44,6 @@ Database: Django default sqlite3
 ![](Clearance_site/app/images/screencapture-127-0-0-1-8000-superuser-update-2021-07-05-18_54_39.png)
 
 
-<h3> Registration-page preview </h3>
-![](Clearance_site/app/images/register_page.png)
-
-
 <h3> Print-Form Preview </h3>
+
 ![](Clearance_site/app/images/form_print.png)
