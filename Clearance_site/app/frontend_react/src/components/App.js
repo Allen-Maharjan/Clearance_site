@@ -111,7 +111,7 @@ const App = () => {
                                                         <p>Null</p>
                                                         </td>
                                                             <td data-label="DateCleared">
-                                                                <span class="badge bg-info text-primary">{students.Clear}</span>
+                                                                <span class="badge bg-info">{students.Clear}</span>
                                                             </td>
                                                         <td data-label="">
                                                             <a class="text-current" href="#">{students.DateCleared}</a>

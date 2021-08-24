@@ -1,6 +1,6 @@
 import datetime
 
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
@@ -51,4 +51,4 @@ def updateInfo(request):
         except:
             return render(request, 'Errorpage.html', {})
 
-        return HttpResponse("ok")
+    return render(request, 'sucesspage.html', {})
